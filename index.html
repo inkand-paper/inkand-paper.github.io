@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD. Mustak Tahsin Abir - Portfolio</title>
+    <style>
+        * {margin:0;padding:0;box-sizing:border-box;}
+        body {font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;line-height:1.6;color:#2d3748;background:#f8fafc;min-height:100vh;}
+        .container {max-width:1200px;margin:0 auto;padding:0 20px;}
+        nav {background:rgba(255,255,255,0.95);backdrop-filter:blur(15px);padding:1rem 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,0.1);border-bottom:1px solid #e2e8f0;}
+        .nav-container {display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 20px;}
+        .logo {font-size:1.5rem;font-weight:700;color:#1a202c;cursor:pointer;}
+        .nav-links {display:flex;list-style:none;gap:2rem;}
+        .nav-links a {text-decoration:none;color:#4a5568;font-weight:500;transition:all 0.3s ease;cursor:pointer;position:relative;padding:0.5rem 0;}
+        .nav-links a::after {content:'';position:absolute;width:0;height:2px;bottom:0;left:0;background:#3182ce;transition:width 0.3s ease;}
+        .nav-links a:hover::after,.nav-links a.active::after {width:100%;}
+        .nav-links a:hover,.nav-links a.active {color:#3182ce;}
+        .mobile-menu {display:none;flex-direction:column;cursor:pointer;}
+        .mobile-menu span {width:25px;height:2px;background:#4a5568;margin:3px 0;transition:0.3s;}
+        main {margin-top:80px;min-height:calc(100vh - 80px);padding:2rem 0;}
+        .page {display:none;animation:fadeInUp 0.6s ease-out;}
+        .page.active {display:block;}
+        @keyframes fadeInUp {from {opacity:0;transform:translateY(30px);}to {opacity:1;transform:translateY(0);}}
+        .hero {text-align:center;padding:4rem 0;background:white;border-radius:15px;margin-bottom:2rem;box-shadow:0 4px 25px rgba(0,0,0,0.05);}
+        .hero-content {display:flex;align-items:center;justify-content:center;gap:3rem;margin-bottom:3rem;}
+        .hero-image {width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:4rem;color:white;box-shadow:0 10px 30px rgba(102,126,234,0.3);overflow:hidden;}
+        .hero-image img {width:100%;height:100%;object-fit:cover;display:block;}
+        .hero-text h1 {font-size:3rem;margin-bottom:0.5rem;color:#1a202c;font-weight:700;}
+        .hero-text .title {font-size:1.3rem;color:#3182ce;margin-bottom:1.5rem;font-weight:500;}
+        .hero-text .bio {font-size:1.1rem;color:#4a5568;max-width:500px;margin-bottom:2rem;line-height:1.7;}
+        .resume-btn {background:#3182ce;color:white;padding:1rem 2rem;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;text-decoration:none;display:inline-block;}
+        .resume-btn:hover {background:#2c5aa0;transform:translateY(-2px);box-shadow:0 8px 20px rgba(49,130,206,0.3);}
+        .section {background:white;border-radius:15px;padding:3rem;margin:2rem 0;box-shadow:0 4px 25px rgba(0,0,0,0.05);border:1px solid #e2e8f0;}
+        .section h2 {font-size:2.2rem;color:#1a202c;margin-bottom:2rem;text-align:center;font-weight:600;}
+        .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem;}
+        .card {background:#f7fafc;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.08);transition:all 0.3s ease;cursor:pointer;border:1px solid #e2e8f0;}
+        .card:hover {transform:translateY(-5px);box-shadow:0 8px 30px rgba(0,0,0,0.12);}
+        .card-image {height:200px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-size:3rem;overflow:hidden;}
+        .card-image img {width:100%;height:100%;object-fit:cover;display:block;}
+        .card-content {padding:2rem;}
+        .card-content h3 {font-size:1.3rem;margin-bottom:0.8rem;color:#1a202c;font-weight:600;}
+        .card-content p {color:#4a5568;line-height:1.6;margin-bottom:1rem;}
+        .card-meta {display:flex;justify-content:space-between;align-items:center;font-size:0.9rem;color:#3182ce;font-weight:500;}
+        .work-detail {background:white;border-radius:15px;padding:3rem;margin:2rem 0;box-shadow:0 4px 25px rgba(0,0,0,0.05);border:1px solid #e2e8f0;}
+        .work-header {text-align:center;margin-bottom:3rem;}
+        .work-header h1 {font-size:2.8rem;color:#1a202c;margin-bottom:1rem;font-weight:700;}
+        .work-tags {display:flex;justify-content:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;}
+        .tag {background:#ebf8ff;color:#3182ce;padding:0.5rem 1rem;border-radius:20px;font-size:0.9rem;font-weight:500;border:1px solid #bee3f8;}
+        .work-images {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin:3rem 0;}
+        .work-image {height:300px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;overflow:hidden;}
+        .work-image img {width:100%;height:100%;object-fit:cover;display:block;}
+        .blog-post {background:#f7fafc;border-radius:12px;padding:2rem;margin-bottom:2rem;border:1px solid #e2e8f0;cursor:pointer;transition:all 0.3s ease;}
+        .blog-post:hover {transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,0.1);}
+        .blog-post h3 {color:#1a202c;font-size:1.4rem;margin-bottom:1rem;font-weight:600;}
+        .blog-meta {color:#3182ce;font-size:0.9rem;margin-bottom:1rem;font-weight:500;}
+        .blog-excerpt {color:#4a5568;line-height:1.6;}
+        .blog-image {width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:1rem;display:block;}
+        .admin-panel {background:white;border-radius:15px;padding:3rem;margin:2rem 0;box-shadow:0 4px 25px rgba(0,0,0,0.05);border:1px solid #e2e8f0;}
+        .form-group {margin-bottom:2rem;}
+        .form-group label {display:block;color:#1a202c;margin-bottom:0.5rem;font-weight:600;}
+        .form-group input,.form-group textarea,.form-group select {width:100%;padding:1rem;background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;color:#2d3748;font-size:1rem;transition:border-color 0.3s ease;}
+        .form-group input:focus,.form-group textarea:focus,.form-group select:focus {outline:none;border-color:#3182ce;box-shadow:0 0 0 3px rgba(49,130,206,0.1);}
+        .form-group textarea {min-height:200px;resize:vertical;}
+        .file-input-wrapper {position:relative;display:inline-block;cursor:pointer;background:#f7fafc;border:2px dashed #cbd5e0;border-radius:8px;padding:2rem;text-align:center;width:100%;transition:all 0.3s ease;}
+        .file-input-wrapper:hover {border-color:#3182ce;background:#ebf8ff;}
+        .file-input-wrapper input[type="file"] {position:absolute;opacity:0;width:100%;height:100%;cursor:pointer;}
+        .file-preview {margin-top:1rem;display:flex;flex-wrap:wrap;gap:1rem;}
+        .preview-image {width:100px;height:100px;object-fit:cover;border-radius:8px;border:2px solid #e2e8f0;}
+        .btn {background:#3182ce;color:white;padding:1rem 2rem;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;margin-right:1rem;margin-bottom:0.5rem;}
+        .btn:hover {background:#2c5aa0;transform:translateY(-2px);box-shadow:0 5px 15px rgba(49,130,206,0.3);}
+        .btn-secondary {background:transparent;color:#4a5568;border:1px solid #e2e8f0;}
+        .btn-secondary:hover {background:#f7fafc;color:#2d3748;transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .btn-danger {background:#e53e3e;}
+        .btn-danger:hover {background:#c53030;}
+        .btn-small {padding:0.5rem 1rem;font-size:0.9rem;}
+        .contact-info {background:#ebf8ff;padding:2rem;border-radius:12px;margin:2rem 0;border:1px solid #bee3f8;}
+        .contact-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+        .contact-item {display:flex;align-items:center;gap:1rem;}
+        .contact-icon {width:50px;height:50px;background:#3182ce;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;}
+        .contact-details h4 {color:#1a202c;font-weight:600;margin-bottom:0.3rem;}
+        .contact-details p {color:#4a5568;font-size:0.95rem;}
+        footer {background:white;padding:3rem 0;margin-top:4rem;border-top:1px solid #e2e8f0;}
+        .footer-content {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-bottom:2rem;}
+        .footer-section h3 {color:#1a202c;margin-bottom:1rem;font-weight:600;}
+        .footer-section a {color:#4a5568;text-decoration:none;display:block;margin-bottom:0.5rem;transition:color 0.3s ease;}
+        .footer-section a:hover {color:#3182ce;}
+        .social-links {display:flex;gap:1rem;}
+        .social-links a {width:40px;height:40px;background:#f7fafc;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#4a5568;font-size:1.2rem;transition:all 0.3s ease;border:1px solid #e2e8f0;}
+        .social-links a:hover {background:#3182ce;color:white;transform:translateY(-2px);}
+        .copyright {text-align:center;padding-top:2rem;border-top:1px solid #e2e8f0;color:#4a5568;}
+        @media (max-width: 768px) {.nav-links {display:none;}.mobile-menu {display:flex;}.hero-content {flex-direction:column;gap:2rem;}.hero-text h1 {font-size:2.2rem;}.hero-image {width:150px;height:150px;font-size:3rem;}.grid {grid-template-columns:1fr;}.work-images {grid-template-columns:1fr;}.section {padding:2rem;}.contact-grid {grid-template-columns:1fr;}}
+        .loading {display:inline-block;width:20px;height:20px;border:3px solid rgba(49,130,206,0.3);border-radius:50%;border-top-color:#3182ce;animation:spin 1s ease-in-out infinite;}
+        @keyframes spin {to {transform:rotate(360deg);}}
+        .post-management {display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-top:1rem;}
+        .post-actions {display:flex;gap:0.5rem;flex-shrink:0;}
+        .admin-post-item {background:#f7fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem;margin-bottom:1rem;}
+        .admin-post-content {flex:1;}
+        .image-fit {width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit;}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('home')">MD. Mustak Tahsin Abir</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('works')">Works</a></li>
+                <li><a href="#" onclick="showPage('blog')">Blog</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#" onclick="showPage('admin')">Admin</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <!-- Homepage -->
+        <div id="home" class="page active">
+            <div class="container">
+                <section class="hero">
+                    <div class="hero-content">
+                        <div class="hero-image">
+                            <img src="473671937_968710075119548_7679597534837403629_n.jpg" alt="Profile">
+                        </div>
+                        <div class="hero-text">
+                            <h1>MD. Mustak Tahsin Abir</h1>
+                            <div class="title">Creative Professional & Developer</div>
+                            <div class="bio">
+                                Passionate creative professional with expertise in digital design, 
+                                development, and user experience. I create innovative solutions 
+                                that bridge creativity and technology to deliver exceptional results.
+                            </div>
+                            <a href="#" class="resume-btn" onclick="downloadResume()">Download Resume</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <h2>Featured Works</h2>
+                    <div class="grid" id="featured-works"></div>
+                </section>
+                <section class="section">
+                    <h2>Recent Blog Posts</h2>
+                    <div id="recent-posts"></div>
+                </section>
+            </div>
+        </div>
+        <!-- Works Page -->
+        <div id="works" class="page">
+            <div class="container">
+                <section class="section">
+                    <h2>All Works</h2>
+                    <div class="grid" id="all-works"></div>
+                </section>
+            </div>
+        </div>
+        <!-- Work Detail Page -->
+        <div id="work-detail" class="page">
+            <div class="container">
+                <div class="work-detail" id="work-detail-content"></div>
+            </div>
+        </div>
+        <!-- Blog Page -->
+        <div id="blog" class="page">
+            <div class="container">
+                <section class="section">
+                    <h2>Blog Posts</h2>
+                    <div id="blog-posts"></div>
+                </section>
+            </div>
+        </div>
+        <!-- Blog Post Detail -->
+        <div id="blog-post" class="page">
+            <div class="container">
+                <div class="section" id="blog-post-content"></div>
+            </div>
+        </div>
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <div class="container">
+                <section class="section">
+                    <h2>Get In Touch</h2>
+                    <div class="contact-info">
+                        <div class="contact-grid">
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-details">
+                                    <h4>Email</h4>
+                                    <p>tabir8431@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📱</div>
+                                <div class="contact-details">
+                                    <h4>Phone</h4>
+                                    <p>01345808742</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-details">
+                                    <h4>Address</h4>
+                                    <p>Will be updated later</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">💼</div>
+                                <div class="contact-details">
+                                    <h4>LinkedIn</h4>
+                                    <p>Connect with me</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+        <!-- Admin Login Gate (Password-based) -->
+        <div id="admin-login" class="page">
+            <div class="container">
+                <section class="admin-panel">
+                    <h2>Admin Login</h2>
+                    <p style="color:#4a5568;margin-bottom:1rem;">Enter your admin password to access the admin panel.</p>
+                    <form id="admin-login-form">
+                        <div class="form-group">
+                            <label for="admin-password">Admin Password</label>
+                            <input type="password" id="admin-password" placeholder="Enter admin password" required>
+                        </div>
+                        <button type="submit" class="btn">Login as Admin</button>
+                        <button type="button" class="btn btn-secondary" onclick="showPage('home')">Cancel</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+        <!-- Admin Panel -->
+        <div id="admin" class="page">
+            <div class="container">
+                <section class="admin-panel">
+                    <h2>Admin Panel</h2>
+                    <div id="admin-content">
+                        <div class="form-group">
+                            <button class="btn" onclick="showNewPostForm()">Create New Blog Post</button>
+                            <button class="btn btn-secondary" onclick="showAllPosts()">Manage Blog Posts</button>
+                            <button class="btn" onclick="showNewWorkForm()">Create New Work</button>
+                            <button class="btn btn-secondary" onclick="showAllWorksAdmin()">Manage Works</button>
+                        </div>
+                        <div id="admin-form" style="display: none;">
+                            <form id="blog-form">
+                                <input type="hidden" id="post-id" name="post-id">
+                                <div class="form-group">
+                                    <label for="post-title">Title</label>
+                                    <input type="text" id="post-title" name="title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-category">Category</label>
+                                    <select id="post-category" name="category">
+                                        <option value="Design">Design</option>
+                                        <option value="Development">Development</option>
+                                        <option value="Creative">Creative</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Technology">Technology</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-image">Featured Image</label>
+                                    <div class="file-input-wrapper">
+                                        <input type="file" id="post-image" name="image" accept="image/*" onchange="previewImage(this)">
+                                        <div>📷 Click to upload image or drag and drop</div>
+                                        <div style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Supports: JPG, PNG, GIF (Max: 5MB)</div>
+                                    </div>
+                                    <div id="image-preview" class="file-preview"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-excerpt">Excerpt</label>
+                                    <textarea id="post-excerpt" name="excerpt" rows="3" placeholder="Brief description of the post..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-content">Content</label>
+                                    <textarea id="post-content" name="content" required placeholder="Write your blog post content here..."></textarea>
+                                </div>
+                                <button type="submit" class="btn">Publish Post</button>
+                                <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
+                                <button type="button" id="delete-current-post" class="btn btn-danger" style="display:none;" onclick="deleteCurrentEditingPost()">Delete This Post</button>
+                            </form>
+                        </div>
+                        <div id="admin-work-form" style="display:none;">
+                            <form id="work-form">
+                                <input type="hidden" id="work-id" name="work-id">
+                                <div class="form-group">
+                                    <label for="work-title">Title</label>
+                                    <input type="text" id="work-title" name="title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-category">Category</label>
+                                    <input type="text" id="work-category" name="category" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-year">Year</label>
+                                    <input type="text" id="work-year" name="year" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-tags">Tags (comma separated)</label>
+                                    <input type="text" id="work-tags" name="tags" placeholder="e.g. Branding, Logo Design">
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-description">Short Description</label>
+                                    <textarea id="work-description" name="description" rows="2" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-fullDescription">Full Description</label>
+                                    <textarea id="work-fullDescription" name="fullDescription" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-image">Featured Image</label>
+                                    <div class="file-input-wrapper">
+                                        <input type="file" id="work-image" name="image" accept="image/*" onchange="previewWorkImage(this)">
+                                        <div>📷 Click to upload image or drag and drop</div>
+                                        <div style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Supports: JPG, PNG, GIF (Max: 5MB)</div>
+                                    </div>
+                                    <div id="work-image-preview" class="file-preview"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-images">Extra Images (up to 4, optional)</label>
+                                    <input type="file" id="work-images" name="images" accept="image/*" multiple onchange="previewWorkExtraImages(this)">
+                                    <div id="work-extra-images-preview" class="file-preview"></div>
+                                </div>
+                                <button type="submit" class="btn">Publish Work</button>
+                                <button type="button" class="btn btn-secondary" onclick="cancelWorkEdit()">Cancel</button>
+                                <button type="button" id="delete-current-work" class="btn btn-danger" style="display:none;" onclick="deleteCurrentEditingWork()">Delete This Work</button>
+                            </form>
+                        </div>
+                        <div id="posts-list"></div>
+                        <div id="works-list-admin"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#" title="LinkedIn">💼</a>
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="GitHub">🐙</a>
+                        <a href="#" title="Dribbble">🏀</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#" onclick="showPage('works')">Portfolio</a>
+                    <a href="#" onclick="showPage('blog')">Blog</a>
+                    <a href="#" onclick="showPage('contact')">Contact</a>
+                    <a href="#" onclick="showPage('admin')">Admin Login</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <a href="mailto:tabir8431@gmail.com">tabir8431@gmail.com</a>
+                    <a href="tel:01345808742">01345808742</a>
+                    <a href="#">Address: Will be updated later</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 MD. Mustak Tahsin Abir. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+<script>
+let isAdmin = false;
+const ADMIN_PASSWORD = "amitahsinabir123";
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+let works = [
+    {
+        id: 1,
+        title: "Brand Identity Design",
+        year: "2024",
+        category: "Branding",
+        description: "Complete brand identity design for a tech startup including logo, color palette, and brand guidelines.",
+        fullDescription: "This comprehensive brand identity project involved creating a complete visual system for a emerging tech startup. The project included extensive research into the target market, competitor analysis, and multiple design iterations. The final deliverables included a distinctive logo, comprehensive color palette, typography system, and detailed brand guidelines that ensure consistent application across all touchpoints.",
+        images: ["🎨", "🖼️", "📱", "💻"],
+        imageUrl: "https://via.placeholder.com/800x500?text=Featured+Work+1",
+        tags: ["Branding", "Logo Design", "Visual Identity"]
+    },
+    {
+        id: 2,
+        title: "E-commerce Website",
+        year: "2024",
+        category: "Web Design",
+        description: "Modern e-commerce website design with focus on user experience and conversion optimization.",
+        fullDescription: "A complete e-commerce website redesign focused on improving user experience and increasing conversion rates. The project involved user research, wireframing, prototyping, and final visual design. Special attention was paid to mobile responsiveness, loading speed optimization, and intuitive navigation patterns.",
+        images: ["🛒", "📱", "💳", "📊"],
+        imageUrl: "https://via.placeholder.com/800x500?text=Featured+Work+2",
+        tags: ["Web Design", "UX/UI", "E-commerce"]
+    },
+    {
+        id: 3,
+        title: "Mobile App Interface",
+        year: "2023",
+        category: "UI/UX",
+        description: "Intuitive mobile app interface design for a productivity application.",
+        fullDescription: "Design of a comprehensive productivity mobile application with focus on user engagement and efficiency. The project included user journey mapping, wireframing, prototyping, and final UI design. The interface features intuitive navigation, clean data visualization, and motivational elements to encourage user productivity.",
+        images: ["📱", "⚡", "📈", "🎯"],
+        imageUrl: "https://via.placeholder.com/800x500?text=Featured+Work+3",
+        tags: ["Mobile Design", "UI/UX", "Productivity"]
+    },
+    {
+        id: 4,
+        title: "Digital Marketing Campaign",
+        year: "2023",
+        category: "Marketing",
+        description: "Creative digital marketing campaign for a lifestyle brand.",
+        fullDescription: "A comprehensive digital marketing campaign for a lifestyle brand, featuring creative visuals, engaging copy, and strategic social media content. The campaign was designed to work across multiple platforms including Instagram, Facebook, and web banners.",
+        images: ["📢", "📸", "✨", "🎨"],
+        imageUrl: "https://via.placeholder.com/800x500?text=Featured+Work+4",
+        tags: ["Marketing", "Social Media", "Creative"]
+    }
+];
+
+let blogPosts = [
+    {
+        id: 1,
+        title: "The Future of Web Design",
+        date: "2024-01-15",
+        category: "Design",
+        excerpt: "Exploring upcoming trends and technologies that will shape the future of web design.",
+        content: "Web design is constantly evolving, driven by new technologies, changing user expectations, and emerging design philosophies. In this post, we'll explore the key trends that are shaping the future of web design.\n\nOne of the most significant trends is the move towards more immersive and interactive experiences. With the advancement of CSS animations, WebGL, and JavaScript frameworks, designers can create websites that feel more like applications.\n\nAnother important trend is the focus on accessibility and inclusive design. As we become more aware of the diverse needs of web users, designers are prioritizing features that make websites usable for everyone.\n\nThe rise of AI and machine learning is also beginning to impact web design, from automated layout generation to personalized user experiences based on behavior patterns.",
+        image: null
+    },
+    {
+        id: 2,
+        title: "My Creative Process",
+        date: "2024-01-10",
+        category: "Creative",
+        excerpt: "A deep dive into my creative process and how I approach new design challenges.",
+        content: "Every great design starts with a great process. Over the years, I've refined my approach to creative problem-solving, and I'd like to share some insights into how I tackle new design challenges.\n\nThe process begins with understanding - not just the brief, but the context, the audience, and the underlying problem we're trying to solve. I spend considerable time in this research phase because it informs every decision that follows.\n\nNext comes ideation - the fun part where possibilities are endless. I use various techniques from mind mapping to rapid sketching to explore different directions. The key is to generate many ideas without judgment.\n\nThen comes refinement, where we narrow down the options and develop the most promising concepts. This is where technical skills meet creative vision, and where the real magic happens.\n\nFinally, there's execution and iteration. Great design is rarely perfect on the first try, so I always build in time for testing, feedback, and refinement.",
+        image: null
+    },
+    {
+        id: 3,
+        title: "Building Responsive Layouts",
+        date: "2024-01-05",
+        category: "Development",
+        excerpt: "Best practices for creating responsive web layouts that work across all devices.",
+        content: "Responsive design is no longer optional - it's essential. With users accessing websites from an ever-growing variety of devices, creating layouts that adapt seamlessly to different screen sizes is crucial for success.\n\nThe foundation of responsive design lies in flexible grids, fluid images, and media queries. But modern responsive design goes beyond these basics to consider touch interactions, loading performance, and context of use.\n\nOne of the key principles I follow is mobile-first design. By starting with the constraints of mobile devices, we're forced to prioritize content and functionality, which often leads to cleaner, more focused designs.\n\nCSS Grid and Flexbox have revolutionized how we approach layout, making it easier to create complex, responsive designs without relying on frameworks. These tools give us precise control over how elements behave at different breakpoints.\n\nTesting is crucial. I always test designs on real devices, not just browser developer tools, because the actual user experience can be quite different from what we see in emulation.",
+        image: null
+    }
+];
+
+let currentWorkId = null, currentPostId = null, editingPostId = null, editingWorkId = null;
+
+function showPage(pageId) {
+    if (pageId === 'admin' && !isAdmin) pageId = 'admin-login';
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+    const activeLink = document.querySelector(`.nav-links a[onclick="showPage('${pageId}')"]`);
+    if (activeLink) activeLink.classList.add('active');
+    switch(pageId) {
+        case 'home': loadHomePage(); break;
+        case 'works': loadWorksPage(); break;
+        case 'blog': loadBlogIndexPage(); break;
+        case 'admin': loadAdminPage(); break;
+    }
+}
+
+document.getElementById('admin-login-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const pwd = document.getElementById('admin-password').value.trim();
+    if (pwd === ADMIN_PASSWORD) {
+        isAdmin = true;
+        alert('Admin access granted.');
+        showPage('admin');
+    } else {
+        isAdmin = false;
+        alert('Access denied. Incorrect password.');
+    }
+});
+
+// Works Admin Panel
+function showNewWorkForm(){
+    if (!isAdmin) return alert('Admin only');
+    editingWorkId = null;
+    document.getElementById('admin-work-form').style.display = 'block';
+    document.getElementById('works-list-admin').style.display = 'none';
+    document.getElementById('work-form').reset();
+    document.getElementById('work-image-preview').innerHTML = '';
+    document.getElementById('work-extra-images-preview').innerHTML = '';
+    document.getElementById('delete-current-work').style.display = 'none';
+}
+function showAllWorksAdmin() {
+    if (!isAdmin) return alert('Admin only');
+    document.getElementById('admin-work-form').style.display = 'none';
+    document.getElementById('works-list-admin').style.display = 'block';
+    document.getElementById('works-list-admin').innerHTML =
+        `<h3 style="color:#1a202c;margin-bottom:2rem;">Manage Works</h3>${
+        works.map(work=>`
+            <div class="admin-post-item">
+                <div class="post-management">
+                    <div class="admin-post-content">
+                        ${work.imageUrl ? `<img src="${work.imageUrl}" alt="${escapeHtml(work.title)}" style="width:80px;height:60px;object-fit:cover;border-radius:8px;float:left;margin-right:1rem;">` : ''}
+                        <h3 style="color:#1a202c;">${work.title}</h3>
+                        <div class="blog-meta">${work.category} • ${work.year}</div>
+                        <div class="blog-excerpt">${work.description}</div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn btn-small" onclick="editWork(${work.id})">Edit</button>
+                        <button class="btn btn-danger btn-small" onclick="deleteWork(${work.id})">Delete</button>
+                    </div>
+                </div>
+            </div>
+        `).join('')}`;
+}
+function editWork(workId){
+    if (!isAdmin) return alert('Admin only');
+    const work = works.find(w=>w.id===workId); if(!work) return;
+    editingWorkId = workId;
+    document.getElementById('admin-work-form').style.display='block';
+    document.getElementById('works-list-admin').style.display='none';
+    document.getElementById('work-id').value = work.id;
+    document.getElementById('work-title').value = work.title;
+    document.getElementById('work-category').value = work.category;
+    document.getElementById('work-year').value = work.year;
+    document.getElementById('work-tags').value = work.tags.join(', ');
+    document.getElementById('work-description').value = work.description;
+    document.getElementById('work-fullDescription').value = work.fullDescription;
+    document.getElementById('delete-current-work').style.display = 'inline-block';
+    document.getElementById('work-image-preview').innerHTML = work.imageUrl ? `<img src="${work.imageUrl}" class="preview-image">` : '';
+    document.getElementById('work-extra-images-preview').innerHTML = work.images ? work.images.map(img =>
+        img.startsWith('data:') ? `<img src="${img}" class="preview-image">` : `<span style="font-size:2rem;">${img}</span>`).join('') : '';
+}
+function deleteWork(workId){
+    if (!isAdmin) return alert('Admin only');
+    if (confirm('Are you sure you want to delete this work?')) {
+        works = works.filter(w=>w.id!==workId);
+        showAllWorksAdmin();
+        loadWorksPage();
+        loadHomePage();
+    }
+}
+function deleteCurrentEditingWork(){
+    if (!editingWorkId) return;
+    deleteWork(editingWorkId);
+    cancelWorkEdit();
+}
+function cancelWorkEdit(){
+    editingWorkId = null;
+    document.getElementById('work-form').reset();
+    document.getElementById('work-image-preview').innerHTML = '';
+    document.getElementById('work-extra-images-preview').innerHTML = '';
+    document.getElementById('delete-current-work').style.display = 'none';
+    showAllWorksAdmin();
+}
+function previewWorkImage(input){
+    const preview = document.getElementById('work-image-preview');
+    preview.innerHTML = '';
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'preview-image';
+            preview.appendChild(img);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function previewWorkExtraImages(input){
+    const preview = document.getElementById('work-extra-images-preview');
+    preview.innerHTML = '';
+    if (input.files) {
+        Array.from(input.files).slice(0,4).forEach(file=>{
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'preview-image';
+                preview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+}
+document.getElementById('work-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!isAdmin) return alert('Admin only');
+    const formData = new FormData(e.target);
+    const imageFile = formData.get('image');
+    let workData = {
+        title: formData.get('title'),
+        category: formData.get('category'),
+        year: formData.get('year'),
+        tags: formData.get('tags').split(',').map(t=>t.trim()).filter(Boolean),
+        description: formData.get('description'),
+        fullDescription: formData.get('fullDescription'),
+        imageUrl: null,
+        images: []
+    };
+    const save = ()=>saveWork(workData);
+    if (imageFile && imageFile.size>0){
+        const reader = new FileReader();
+        reader.onload = e=>{
+            workData.imageUrl = e.target.result;
+            handleExtraImages(formData, workData, save);
+        };
+        reader.readAsDataURL(imageFile);
+    } else {
+        if (editingWorkId){
+            const existingWork = works.find(w=>w.id===editingWorkId);
+            if (existingWork) workData.imageUrl = existingWork.imageUrl||null;
+        } else workData.imageUrl = "https://via.placeholder.com/800x500?text=Work+Image";
+        handleExtraImages(formData, workData, save);
+    }
+});
+function handleExtraImages(formData, workData, cb){
+    const imagesFiles = document.getElementById('work-images').files;
+    if (imagesFiles.length){
+        let loaded = 0;
+        Array.from(imagesFiles).slice(0,4).forEach((file,i)=>{
+            const reader = new FileReader();
+            reader.onload = e=>{
+                workData.images[i] = e.target.result;
+                loaded++;
+                if (loaded===Math.min(4,imagesFiles.length)) cb();
+            };
+            reader.readAsDataURL(file);
+        });
+    } else {
+        if (editingWorkId){
+            const existingWork = works.find(w=>w.id===editingWorkId);
+            if (existingWork) workData.images = existingWork.images||[];
+        } else workData.images = ["🎨"];
+        cb();
+    }
+}
+function saveWork(workData){
+    if (!isAdmin) return alert('Admin only');
+    if (editingWorkId){
+        const idx = works.findIndex(w=>w.id===editingWorkId);
+        if (idx!==-1) works[idx] = {...works[idx],...workData};
+    } else {
+        const newId = works.length?Math.max(...works.map(w=>w.id))+1:1;
+        works.unshift({id:newId,...workData});
+    }
+    alert('Work saved!');
+    showAllWorksAdmin();
+    loadWorksPage();
+    loadHomePage();
+}
+
+// Contact Form EmailJS
+document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const subject = form.subject.value;
+    const message = form.message.value;
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: name,
+        from_email: email,
+        subject: subject,
+        message: message,
+        to_email: "tabir8431@gmail.com"
+    }).then(function(){
+        alert('Thank you for your message! I\'ll get back to you soon.');
+        form.reset();
+    }, function(error){
+        alert('Error sending message. Please try again later.');
+    });
+});
+
+// Blog Admin Panel
+function showNewPostForm() {
+    if (!isAdmin) return alert('Admin only');
+    editingPostId = null;
+    document.getElementById('admin-form').style.display = 'block';
+    document.getElementById('posts-list').style.display = 'none';
+    document.getElementById('blog-form').reset();
+    document.getElementById('post-id').value = '';
+    document.getElementById('image-preview').innerHTML = '';
+    document.getElementById('delete-current-post').style.display = 'none';
+}
+
+function showAllPosts() {
+    if (!isAdmin) return alert('Admin only');
+    document.getElementById('admin-form').style.display = 'none';
+    document.getElementById('posts-list').style.display = 'block';
+    const postsListContainer = document.getElementById('posts-list');
+    postsListContainer.innerHTML = `
+        <h3 style="color: #1a202c; margin-bottom: 2rem;">Manage Posts</h3>
+        ${blogPosts.map(post => `
+            <div class="admin-post-item">
+                <div class="post-management">
+                    <div class="admin-post-content">
+                        ${post.image ? `<img src="${post.image}" alt="${escapeHtml(post.title)}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; float: left; margin-right: 1rem;">` : ''}
+                        <h3 style="color: #1a202c; margin-bottom: 0.5rem;">${post.title}</h3>
+                        <div class="blog-meta">${formatDate(post.date)} • ${post.category}</div>
+                        <div class="blog-excerpt" style="margin-top: 0.5rem;">${post.excerpt}</div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn btn-small" onclick="editPost(${post.id})">Edit</button>
+                        <button class="btn btn-danger btn-small" onclick="deletePost(${post.id})">Delete</button>
+                    </div>
+                </div>
+            </div>
+        `).join('')}
+    `;
+}
+
+function editPost(postId) {
+    if (!isAdmin) return alert('Admin only');
+    const post = blogPosts.find(p => p.id === postId);
+    if (!post) return;
+
+    editingPostId = postId;
+    document.getElementById('admin-form').style.display = 'block';
+    document.getElementById('posts-list').style.display = 'none';
+
+    document.getElementById('post-id').value = post.id;
+    document.getElementById('post-title').value = post.title;
+    document.getElementById('post-category').value = post.category;
+    document.getElementById('post-excerpt').value = post.excerpt;
+    document.getElementById('post-content').value = post.content;
+    document.getElementById('delete-current-post').style.display = 'inline-block';
+
+    const imagePreview = document.getElementById('image-preview');
+    if (post.image) {
+        imagePreview.innerHTML = `<img src="${post.image}" alt="Current image" class="preview-image">`;
+    } else {
+        imagePreview.innerHTML = '';
+    }
+}
+
+function deletePost(postId) {
+    if (!isAdmin) return alert('Admin only');
+    if (confirm('Are you sure you want to delete this post?')) {
+        blogPosts = blogPosts.filter(p => p.id !== postId);
+        showAllPosts();
+        if (document.getElementById('home').classList.contains('active')) {
+            loadHomePage();
+        }
+        if (document.getElementById('blog').classList.contains('active')) {
+            loadBlogIndexPage();
+        }
+    }
+}
+
+function deleteCurrentEditingPost() {
+    if (!editingPostId) return;
+    deletePost(editingPostId);
+    cancelEdit();
+}
+
+function cancelEdit() {
+    editingPostId = null;
+    document.getElementById('blog-form').reset();
+    document.getElementById('image-preview').innerHTML = '';
+    document.getElementById('delete-current-post').style.display = 'none';
+    showAllPosts();
+}
+
+function previewImage(input) {
+    const preview = document.getElementById('image-preview');
+    preview.innerHTML = '';
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'preview-image';
+            preview.appendChild(img);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+document.getElementById('blog-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (!isAdmin) {
+        alert('Only admin can publish posts.');
+        return;
+    }
+    
+    const formData = new FormData(e.target);
+    const imageFile = formData.get('image');
+    
+    const postData = {
+        title: formData.get('title'),
+        category: formData.get('category'),
+        excerpt: formData.get('excerpt'),
+        content: formData.get('content'),
+        date: new Date().toISOString().split('T')[0],
+        image: null
+    };
+
+    const save = () => savePost(postData);
+
+    if (imageFile && imageFile.size > 0) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            postData.image = e.target.result;
+            save();
+        };
+        reader.readAsDataURL(imageFile);
+    } else {
+        if (editingPostId) {
+            const existingPost = blogPosts.find(p => p.id === editingPostId);
+            if (existingPost) postData.image = existingPost.image || null;
+        } else {
+            postData.image = "https://via.placeholder.com/1000x600?text=Blog+Image";
+        }
+        save();
+    }
+});
+
+function savePost(postData) {
+    if (!isAdmin) {
+        alert('Only admin can save posts.');
+        return;
+    }
+
+    if (editingPostId) {
+        const postIndex = blogPosts.findIndex(p => p.id === editingPostId);
+        if (postIndex !== -1) {
+            blogPosts[postIndex] = { ...blogPosts[postIndex], ...postData };
+        }
+    } else {
+        const newId = blogPosts.length ? Math.max(...blogPosts.map(p => p.id)) + 1 : 1;
+        const newPost = {
+            id: newId,
+            ...postData
+        };
+        blogPosts.unshift(newPost);
+    }
+
+    alert('Post saved successfully!');
+    showAllPosts();
+    if (document.getElementById('home').classList.contains('active')) {
+        loadHomePage();
+    }
+    if (document.getElementById('blog').classList.contains('active')) {
+        loadBlogIndexPage();
+    }
+}
+
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+}
+
+function escapeHtml(s="") {
+    return s.replace(/[&<>"'`=\/]/g, function (c) {
+        return ({
+            '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#x2F;','`':'&#x60;','=':'&#x3D;'
+        })[c];
+    });
+}
+
+function downloadResume() {
+    const resumeContent = `
+MD. MUSTAK TAHSIN ABIR
+Creative Professional & Developer
+
+CONTACT
+Email: tabir8431@gmail.com
+Phone: 01345808742
+Address: Will be updated later
+
+EXPERIENCE
+Creative Professional (2020-Present)
+• Specialized in digital design and development
+• Created innovative solutions bridging creativity and technology
+• Delivered exceptional results for various clients
+
+SKILLS
+• Digital Design
+• Web Development
+• Creative Problem Solving
+• User Experience Design
+• Project Management
+
+EDUCATION
+Bachelor's Degree in Computer Science
+Graduated with honors
+
+PROJECTS
+• Brand Identity Design Projects
+• E-commerce Website Development
+• Mobile App Interface Design
+• Digital Marketing Campaigns
+    `;
+
+    const blob = new Blob([resumeContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'MD_Mustak_Tahsin_Abir_Resume.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+}
+
+function loadHomePage() {
+    const featuredWorksContainer = document.getElementById('featured-works');
+    featuredWorksContainer.innerHTML = works.slice(0, 3).map(work => {
+        return `
+        <div class="card" onclick="showWorkDetail(${work.id})">
+            <div class="card-image">
+                ${work.images[0]}
+            </div>
+            <div class="card-content">
+                <h3>${work.title}</h3>
+                <p>${work.description}</p>
+                <div class="card-meta">
+                    <span>${work.category}</span>
+                    <span>${work.year}</span>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    const recentPostsContainer = document.getElementById('recent-posts');
+    recentPostsContainer.innerHTML = blogPosts.slice(0, 2).map(post => `
+        <div class="blog-post" onclick="showBlogPost(${post.id})">
+            ${post.image ? `<img src="${post.image}" alt="${escapeHtml(post.title)}" class="blog-image">` : ``}
+            <h3>${post.title}</h3>
+            <div class="blog-meta">${formatDate(post.date)} • ${post.category}</div>
+            <div class="blog-excerpt">${post.excerpt}</div>
+        </div>
+    `).join('');
+}
+
+function loadWorksPage() {
+    const allWorksContainer = document.getElementById('all-works');
+    allWorksContainer.innerHTML = works.map(work => `
+        <div class="card" onclick="showWorkDetail(${work.id})">
+            <div class="card-image">
+                ${work.images[0]}
+            </div>
+            <div class="card-content">
+                <h3>${work.title}</h3>
+                <p>${work.description}</p>
+                <div class="card-meta">
+                    <span>${work.category}</span>
+                    <span>${work.year}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function showWorkDetail(workId) {
+    const work = works.find(w => w.id === workId);
+    if (!work) return;
+
+    currentWorkId = workId;
+    const workDetailContainer = document.getElementById('work-detail-content');
+
+    workDetailContainer.innerHTML = `
+        <div class="work-header">
+            <h1>${work.title}</h1>
+            <div class="work-tags">
+                ${work.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+            <div class="card-meta">
+                <span>${work.category}</span>
+                <span>${work.year}</span>
+            </div>
+        </div>
+        <div class="work-images">
+            ${work.images.map((image, idx) => `
+                <div class="work-image">
+                    ${image}
+                </div>`).join('')}
+        </div>
+        <div style="color: #4a5568; line-height: 1.8; font-size: 1.1rem;">
+            ${work.fullDescription}
+        </div>
+        <div style="margin-top: 2rem;">
+            <button class="btn btn-secondary" onclick="showPage('works')">← Back to Works</button>
+        </div>
+    `;
+
+    showPage('work-detail');
+}
+
+function loadBlogIndexPage() {
+    const blogPostsContainer = document.getElementById('blog-posts');
+    blogPostsContainer.innerHTML = blogPosts.map(post => `
+        <div class="blog-post" onclick="showBlogPost(${post.id})">
+            ${post.image ? `<img src="${post.image}" alt="${escapeHtml(post.title)}" class="blog-image">` : ``}
+            <h3>${post.title}</h3>
+            <div class="blog-meta">${formatDate(post.date)} • ${post.category}</div>
+            <div class="blog-excerpt">${post.excerpt}</div>
+        </div>
+    `).join('');
+}
+
+function showBlogPost(postId) {
+    const post = blogPosts.find(p => p.id === postId);
+    if (!post) return;
+
+    currentPostId = postId;
+    const blogPostContainer = document.getElementById('blog-post-content');
+
+    blogPostContainer.innerHTML = `
+        ${post.image ? `<img src="${post.image}" alt="${escapeHtml(post.title)}" class="blog-image" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 2rem;">` : ''}
+        <h1 style="color: #1a202c; margin-bottom: 1rem; font-size: 2.5rem;">${post.title}</h1>
+        <div class="blog-meta" style="margin-bottom: 2rem; font-size: 1rem;">${formatDate(post.date)} • ${post.category}</div>
+        <div style="color: #4a5568; line-height: 1.8; font-size: 1.1rem; white-space: pre-line;">
+            ${post.content}
+        </div>
+        <div style="margin-top: 3rem;">
+            <button class="btn btn-secondary" onclick="showPage('blog')">← Back to Blog</button>
+        </div>
+    `;
+
+    showPage('blog-post');
+}
+
+function loadAdminPage() {
+    if (!isAdmin) {
+        showPage('admin-login');
+        return;
+    }
+    showAllPosts();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadHomePage();
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    const animatedElements = document.querySelectorAll('.section, .card, .blog-post');
+    animatedElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(element);
+    });
+});
+</script>
+</body>
+</html><body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('home')">MD. Mustak Tahsin Abir</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('works')">Works</a></li>
+                <li><a href="#" onclick="showPage('blog')">Blog</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#" onclick="showPage('admin')">Admin</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <!-- Homepage -->
+        <div id="home" class="page active">
+            <div class="container">
+                <section class="hero">
+                    <div class="hero-content">
+                        <div class="hero-image">
+                            <img src="473671937_968710075119548_7679597534837403629_n.jpg" alt="Profile">
+                        </div>
+                        <div class="hero-text">
+                            <h1>MD. Mustak Tahsin Abir</h1>
+                            <div class="title">Creative Professional & Developer</div>
+                            <div class="bio">
+                                Passionate creative professional with expertise in digital design, 
+                                development, and user experience. I create innovative solutions 
+                                that bridge creativity and technology to deliver exceptional results.
+                            </div>
+                            <a href="#" class="resume-btn" onclick="downloadResume()">Download Resume</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <h2>Featured Works</h2>
+                    <div class="grid" id="featured-works"></div>
+                </section>
+                <section class="section">
+                    <h2>Recent Blog Posts</h2>
+                    <div id="recent-posts"></div>
+                </section>
+            </div>
+        </div>
+        <!-- Works Page -->
+        <div id="works" class="page">
+            <div class="container">
+                <section class="section">
+                    <h2>All Works</h2>
+                    <div class="grid" id="all-works"></div>
+                </section>
+            </div>
+        </div>
+        <!-- Work Detail Page -->
+        <div id="work-detail" class="page">
+            <div class="container">
+                <div class="work-detail" id="work-detail-content"></div>
+            </div>
+        </div>
+        <!-- Blog Page -->
+        <div id="blog" class="page">
+            <div class="container">
+                <section class="section">
+                    <h2>Blog Posts</h2>
+                    <div id="blog-posts"></div>
+                </section>
+            </div>
+        </div>
+        <!-- Blog Post Detail -->
+        <div id="blog-post" class="page">
+            <div class="container">
+                <div class="section" id="blog-post-content"></div>
+            </div>
+        </div>
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <div class="container">
+                <section class="section">
+                    <h2>Get In Touch</h2>
+                    <div class="contact-info">
+                        <div class="contact-grid">
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-details">
+                                    <h4>Email</h4>
+                                    <p>tabir8431@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📱</div>
+                                <div class="contact-details">
+                                    <h4>Phone</h4>
+                                    <p>01345808742</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-details">
+                                    <h4>Address</h4>
+                                    <p>Will be updated later</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">💼</div>
+                                <div class="contact-details">
+                                    <h4>LinkedIn</h4>
+                                    <p>Connect with me</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+        <!-- Admin Login Gate (Password-based) -->
+        <div id="admin-login" class="page">
+            <div class="container">
+                <section class="admin-panel">
+                    <h2>Admin Login</h2>
+                    <p style="color:#4a5568;margin-bottom:1rem;">Enter your admin password to access the admin panel.</p>
+                    <form id="admin-login-form">
+                        <div class="form-group">
+                            <label for="admin-password">Admin Password</label>
+                            <input type="password" id="admin-password" placeholder="Enter admin password" required>
+                        </div>
+                        <button type="submit" class="btn">Login as Admin</button>
+                        <button type="button" class="btn btn-secondary" onclick="showPage('home')">Cancel</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+        <!-- Admin Panel -->
+        <div id="admin" class="page">
+            <div class="container">
+                <section class="admin-panel">
+                    <h2>Admin Panel</h2>
+                    <div id="admin-content">
+                        <div class="form-group">
+                            <button class="btn" onclick="showNewPostForm()">Create New Blog Post</button>
+                            <button class="btn btn-secondary" onclick="showAllPosts()">Manage Blog Posts</button>
+                            <button class="btn" onclick="showNewWorkForm()">Create New Work</button>
+                            <button class="btn btn-secondary" onclick="showAllWorksAdmin()">Manage Works</button>
+                        </div>
+                        <div id="admin-form" style="display: none;">
+                            <form id="blog-form">
+                                <input type="hidden" id="post-id" name="post-id">
+                                <div class="form-group">
+                                    <label for="post-title">Title</label>
+                                    <input type="text" id="post-title" name="title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-category">Category</label>
+                                    <select id="post-category" name="category">
+                                        <option value="Design">Design</option>
+                                        <option value="Development">Development</option>
+                                        <option value="Creative">Creative</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Technology">Technology</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-image">Featured Image</label>
+                                    <div class="file-input-wrapper">
+                                        <input type="file" id="post-image" name="image" accept="image/*" onchange="previewImage(this)">
+                                        <div>📷 Click to upload image or drag and drop</div>
+                                        <div style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Supports: JPG, PNG, GIF (Max: 5MB)</div>
+                                    </div>
+                                    <div id="image-preview" class="file-preview"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-excerpt">Excerpt</label>
+                                    <textarea id="post-excerpt" name="excerpt" rows="3" placeholder="Brief description of the post..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-content">Content</label>
+                                    <textarea id="post-content" name="content" required placeholder="Write your blog post content here..."></textarea>
+                                </div>
+                                <button type="submit" class="btn">Publish Post</button>
+                                <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
+                                <button type="button" id="delete-current-post" class="btn btn-danger" style="display:none;" onclick="deleteCurrentEditingPost()">Delete This Post</button>
+                            </form>
+                        </div>
+                        <div id="admin-work-form" style="display:none;">
+                            <form id="work-form">
+                                <input type="hidden" id="work-id" name="work-id">
+                                <div class="form-group">
+                                    <label for="work-title">Title</label>
+                                    <input type="text" id="work-title" name="title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-category">Category</label>
+                                    <input type="text" id="work-category" name="category" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-year">Year</label>
+                                    <input type="text" id="work-year" name="year" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-tags">Tags (comma separated)</label>
+                                    <input type="text" id="work-tags" name="tags" placeholder="e.g. Branding, Logo Design">
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-description">Short Description</label>
+                                    <textarea id="work-description" name="description" rows="2" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-fullDescription">Full Description</label>
+                                    <textarea id="work-fullDescription" name="fullDescription" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-image">Featured Image</label>
+                                    <div class="file-input-wrapper">
+                                        <input type="file" id="work-image" name="image" accept="image/*" onchange="previewWorkImage(this)">
+                                        <div>📷 Click to upload image or drag and drop</div>
+                                        <div style="font-size: 0.9rem; color: #4a5568; margin-top: 0.5rem;">Supports: JPG, PNG, GIF (Max: 5MB)</div>
+                                    </div>
+                                    <div id="work-image-preview" class="file-preview"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="work-images">Extra Images (up to 4, optional)</label>
+                                    <input type="file" id="work-images" name="images" accept="image/*" multiple onchange="previewWorkExtraImages(this)">
+                                    <div id="work-extra-images-preview" class="file-preview"></div>
+                                </div>
+                                <button type="submit" class="btn">Publish Work</button>
+                                <button type="button" class="btn btn-secondary" onclick="cancelWorkEdit()">Cancel</button>
+                                <button type="button" id="delete-current-work" class="btn btn-danger" style="display:none;" onclick="deleteCurrentEditingWork()">Delete This Work</button>
+                            </form>
+                        </div>
+                        <div id="posts-list"></div>
+                        <div id="works-list-admin"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#" title="LinkedIn">💼</a>
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="GitHub">🐙</a>
+                        <a href="#" title="Dribbble">🏀</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#" onclick="showPage('works')">Portfolio</a>
+                    <a href="#" onclick="showPage('blog')">Blog</a>
+                    <a href="#" onclick="showPage('contact')">Contact</a>
+                    <a href="#" onclick="showPage('admin')">Admin Login</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <a href="mailto:tabir8431@gmail.com">tabir8431@gmail.com</a>
+                    <a href="tel:01345808742">01345808742</a>
+                    <a href="#">Address: Will be updated later</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 MD. Mustak Tahsin Abir. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+<script>
+let isAdmin = false;
+const ADMIN_PASSWORD = "amitahsinabir123";
+const EMAILJS_SERVICE_ID = "service_avuutoc";
+const EMAILJS_TEMPLATE_ID = "template_lhi3f0j";
+const EMAILJS_PUBLIC_KEY = "HP_6qVmIq07jR9DR1";
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+let works = [
+    {
+        id: 1,
+        title: "Brand Identity Design",
+        year: "2024",
+        category: "Branding",
+        description: "Complete brand identity design for a tech startup including logo, color palette, and brand guidelines.",
+        fullDescription: "This comprehensive brand identity project involved creating a complete visual system for a emerging tech startup. The project included extensive research into the target market, competitor analysis, and multiple design iterations. The final deliverables included a distinctive logo, comprehensive color palette, typography system, and detailed brand guidelines that ensure consistent application across all touchpoints.",
+        images: ["🎨", "🖼️", "📱", "💻"],
+        imageUrl: "https://via.placeholder.com/800x500?text=Featured+Work+1",
+        tags: ["Branding", "Logo Design", "Visual Identity"]
+    },
+    {
+        id: 2,
+        title: "E-commerce Website",
+        year: "2024",
+        category: "Web Design",
+        description: "Modern e-commerce website design with focus on user experience and conversion optimization.",
+        fullDescription: "A complete e-commerce website redesign focused on improving user experience and increasing conversion rates. The project involved user research, wireframing, prototyping, and final visual design. Special attention was paid to mobile responsiveness, loading speed optimization, and intuitive navigation patterns.",
+        images: ["🛒", "📱", "💳", "📊"],
+        imageUrl: "https://via.placeholder.com/800x500?text=Featured+Work+2",
+        tags: ["Web Design", "UX/UI", "E-commerce"]
+    },
+    {
+        id: 3,
+        title: "Mobile App Interface",
+        year: "2023",
+        category: "UI/UX",
+        description: "Intuitive mobile app interface design for a productivity application.",
+        fullDescription: "Design of a comprehensive productivity mobile application with focus on user engagement and efficiency. The project included user journey mapping, wireframing, prototyping, and final UI design. The interface features intuitive navigation, clean data visualization, and motivational elements to encourage user productivity.",
+        images: ["📱", "⚡", "📈", "🎯"],
+        imageUrl: "https://via.placeholder.com/800x500?text=Featured+Work+3",
+        tags: ["Mobile Design", "UI/UX", "Productivity"]
+    },
+    {
+        id: 4,
+        title: "Digital Marketing Campaign",
+        year: "2023",
+        category: "Marketing",
+        description: "Creative digital marketing campaign for a lifestyle brand.",
+        fullDescription: "A comprehensive digital marketing campaign for a lifestyle brand, featuring creative visuals, engaging copy, and strategic social media content. The campaign was designed to work across multiple platforms including Instagram, Facebook, and web banners.",
+        images: ["📢", "📸", "✨", "🎨"],
+        imageUrl: "https://via.placeholder.com/800x500?text=Featured+Work+4",
+        tags: ["Marketing", "Social Media", "Creative"]
+    }
+];
+
+let blogPosts = [
+    {
+        id: 1,
+        title: "The Future of Web Design",
+        date: "2024-01-15",
+        category: "Design",
+        excerpt: "Exploring upcoming trends and technologies that will shape the future of web design.",
+        content: "Web design is constantly evolving, driven by new technologies, changing user expectations, and emerging design philosophies. In this post, we'll explore the key trends that are shaping the future of web design.\n\nOne of the most significant trends is the move towards more immersive and interactive experiences. With the advancement of CSS animations, WebGL, and JavaScript frameworks, designers can create websites that feel more like applications.\n\nAnother important trend is the focus on accessibility and inclusive design. As we become more aware of the diverse needs of web users, designers are prioritizing features that make websites usable for everyone.\n\nThe rise of AI and machine learning is also beginning to impact web design, from automated layout generation to personalized user experiences based on behavior patterns.",
+        image: null
+    },
+    {
+        id: 2,
+        title: "My Creative Process",
+        date: "2024-01-10",
+        category: "Creative",
+        excerpt: "A deep dive into my creative process and how I approach new design challenges.",
+        content: "Every great design starts with a great process. Over the years, I've refined my approach to creative problem-solving, and I'd like to share some insights into how I tackle new design challenges.\n\nThe process begins with understanding - not just the brief, but the context, the audience, and the underlying problem we're trying to solve. I spend considerable time in this research phase because it informs every decision that follows.\n\nNext comes ideation - the fun part where possibilities are endless. I use various techniques from mind mapping to rapid sketching to explore different directions. The key is to generate many ideas without judgment.\n\nThen comes refinement, where we narrow down the options and develop the most promising concepts. This is where technical skills meet creative vision, and where the real magic happens.\n\nFinally, there's execution and iteration. Great design is rarely perfect on the first try, so I always build in time for testing, feedback, and refinement.",
+        image: null
+    },
+    {
+        id: 3,
+        title: "Building Responsive Layouts",
+        date: "2024-01-05",
+        category: "Development",
+        excerpt: "Best practices for creating responsive web layouts that work across all devices.",
+        content: "Responsive design is no longer optional - it's essential. With users accessing websites from an ever-growing variety of devices, creating layouts that adapt seamlessly to different screen sizes is crucial for success.\n\nThe foundation of responsive design lies in flexible grids, fluid images, and media queries. But modern responsive design goes beyond these basics to consider touch interactions, loading performance, and context of use.\n\nOne of the key principles I follow is mobile-first design. By starting with the constraints of mobile devices, we're forced to prioritize content and functionality, which often leads to cleaner, more focused designs.\n\nCSS Grid and Flexbox have revolutionized how we approach layout, making it easier to create complex, responsive designs without relying on frameworks. These tools give us precise control over how elements behave at different breakpoints.\n\nTesting is crucial. I always test designs on real devices, not just browser developer tools, because the actual user experience can be quite different from what we see in emulation.",
+        image: null
+    }
+];
+
+let currentWorkId = null, currentPostId = null, editingPostId = null, editingWorkId = null;
+
+function showPage(pageId) {
+    if (pageId === 'admin' && !isAdmin) pageId = 'admin-login';
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+    const activeLink = document.querySelector(`.nav-links a[onclick="showPage('${pageId}')"]`);
+    if (activeLink) activeLink.classList.add('active');
+    switch(pageId) {
+        case 'home': loadHomePage(); break;
+        case 'works': loadWorksPage(); break;
+        case 'blog': loadBlogIndexPage(); break;
+        case 'admin': loadAdminPage(); break;
+    }
+}
+
+document.getElementById('admin-login-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const pwd = document.getElementById('admin-password').value.trim();
+    if (pwd === ADMIN_PASSWORD) {
+        isAdmin = true;
+        alert('Admin access granted.');
+        showPage('admin');
+    } else {
+        isAdmin = false;
+        alert('Access denied. Incorrect password.');
+    }
+});
+
+// Works Admin Panel
+function showNewWorkForm(){
+    if (!isAdmin) return alert('Admin only');
+    editingWorkId = null;
+    document.getElementById('admin-work-form').style.display = 'block';
+    document.getElementById('works-list-admin').style.display = 'none';
+    document.getElementById('work-form').reset();
+    document.getElementById('work-image-preview').innerHTML = '';
+    document.getElementById('work-extra-images-preview').innerHTML = '';
+    document.getElementById('delete-current-work').style.display = 'none';
+}
+function showAllWorksAdmin() {
+    if (!isAdmin) return alert('Admin only');
+    document.getElementById('admin-work-form').style.display = 'none';
+    document.getElementById('works-list-admin').style.display = 'block';
+    document.getElementById('works-list-admin').innerHTML =
+        `<h3 style="color:#1a202c;margin-bottom:2rem;">Manage Works</h3>${
+        works.map(work=>`
+            <div class="admin-post-item">
+                <div class="post-management">
+                    <div class="admin-post-content">
+                        ${work.imageUrl ? `<img src="${work.imageUrl}" alt="${escapeHtml(work.title)}" style="width:80px;height:60px;object-fit:cover;border-radius:8px;float:left;margin-right:1rem;">` : ''}
+                        <h3 style="color:#1a202c;">${work.title}</h3>
+                        <div class="blog-meta">${work.category} • ${work.year}</div>
+                        <div class="blog-excerpt">${work.description}</div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn btn-small" onclick="editWork(${work.id})">Edit</button>
+                        <button class="btn btn-danger btn-small" onclick="deleteWork(${work.id})">Delete</button>
+                    </div>
+                </div>
+            </div>
+        `).join('')}`;
+}
+function editWork(workId){
+    if (!isAdmin) return alert('Admin only');
+    const work = works.find(w=>w.id===workId); if(!work) return;
+    editingWorkId = workId;
+    document.getElementById('admin-work-form').style.display='block';
+    document.getElementById('works-list-admin').style.display='none';
+    document.getElementById('work-id').value = work.id;
+    document.getElementById('work-title').value = work.title;
+    document.getElementById('work-category').value = work.category;
+    document.getElementById('work-year').value = work.year;
+    document.getElementById('work-tags').value = work.tags.join(', ');
+    document.getElementById('work-description').value = work.description;
+    document.getElementById('work-fullDescription').value = work.fullDescription;
+    document.getElementById('delete-current-work').style.display = 'inline-block';
+    document.getElementById('work-image-preview').innerHTML = work.imageUrl ? `<img src="${work.imageUrl}" class="preview-image">` : '';
+    document.getElementById('work-extra-images-preview').innerHTML = work.images ? work.images.map(img =>
+        img.startsWith('data:') ? `<img src="${img}" class="preview-image">` : `<span style="font-size:2rem;">${img}</span>`).join('') : '';
+}
+function deleteWork(workId){
+    if (!isAdmin) return alert('Admin only');
+    if (confirm('Are you sure you want to delete this work?')) {
+        works = works.filter(w=>w.id!==workId);
+        showAllWorksAdmin();
+        loadWorksPage();
+        loadHomePage();
+    }
+}
+function deleteCurrentEditingWork(){
+    if (!editingWorkId) return;
+    deleteWork(editingWorkId);
+    cancelWorkEdit();
+}
+function cancelWorkEdit(){
+    editingWorkId = null;
+    document.getElementById('work-form').reset();
+    document.getElementById('work-image-preview').innerHTML = '';
+    document.getElementById('work-extra-images-preview').innerHTML = '';
+    document.getElementById('delete-current-work').style.display = 'none';
+    showAllWorksAdmin();
+}
+function previewWorkImage(input){
+    const preview = document.getElementById('work-image-preview');
+    preview.innerHTML = '';
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'preview-image';
+            preview.appendChild(img);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function previewWorkExtraImages(input){
+    const preview = document.getElementById('work-extra-images-preview');
+    preview.innerHTML = '';
+    if (input.files) {
+        Array.from(input.files).slice(0,4).forEach(file=>{
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'preview-image';
+                preview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+}
+document.getElementById('work-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!isAdmin) return alert('Admin only');
+    const formData = new FormData(e.target);
+    const imageFile = formData.get('image');
+    let workData = {
+        title: formData.get('title'),
+        category: formData.get('category'),
+        year: formData.get('year'),
+        tags: formData.get('tags').split(',').map(t=>t.trim()).filter(Boolean),
+        description: formData.get('description'),
+        fullDescription: formData.get('fullDescription'),
+        imageUrl: null,
+        images: []
+    };
+    const save = ()=>saveWork(workData);
+    if (imageFile && imageFile.size>0){
+        const reader = new FileReader();
+        reader.onload = e=>{
+            workData.imageUrl = e.target.result;
+            handleExtraImages(formData, workData, save);
+        };
+        reader.readAsDataURL(imageFile);
+    } else {
+        if (editingWorkId){
+            const existingWork = works.find(w=>w.id===editingWorkId);
+            if (existingWork) workData.imageUrl = existingWork.imageUrl||null;
+        } else workData.imageUrl = "https://via.placeholder.com/800x500?text=Work+Image";
+        handleExtraImages(formData, workData, save);
+    }
+});
+function handleExtraImages(formData, workData, cb){
+    const imagesFiles = document.getElementById('work-images').files;
+    if (imagesFiles.length){
+        let loaded = 0;
+        Array.from(imagesFiles).slice(0,4).forEach((file,i)=>{
+            const reader = new FileReader();
+            reader.onload = e=>{
+                workData.images[i] = e.target.result;
+                loaded++;
+                if (loaded===Math.min(4,imagesFiles.length)) cb();
+            };
+            reader.readAsDataURL(file);
+        });
+    } else {
+        if (editingWorkId){
+            const existingWork = works.find(w=>w.id===editingWorkId);
+            if (existingWork) workData.images = existingWork.images||[];
+        } else workData.images = ["🎨"];
+        cb();
+    }
+}
+function saveWork(workData){
+    if (!isAdmin) return alert('Admin only');
+    if (editingWorkId){
+        const idx = works.findIndex(w=>w.id===editingWorkId);
+        if (idx!==-1) works[idx] = {...works[idx],...workData};
+    } else {
+        const newId = works.length?Math.max(...works.map(w=>w.id))+1:1;
+        works.unshift({id:newId,...workData});
+    }
+    alert('Work saved!');
+    showAllWorksAdmin();
+    loadWorksPage();
+    loadHomePage();
+}
+
+// Contact Form EmailJS
+document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const subject = form.subject.value;
+    const message = form.message.value;
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: name,
+        from_email: email,
+        subject: subject,
+        message: message,
+        to_email: "tabir8431@gmail.com"
+    }).then(function(){
+        alert('Thank you for your message! I\'ll get back to you soon.');
+        form.reset();
+    }, function(error){
+        alert('Error sending message. Please try again later.');
+    });
+});
+
+// Blog Admin Panel
+function showNewPostForm() {
+    if (!isAdmin) return alert('Admin only');
+    editingPostId = null;
+    document.getElementById('admin-form').style.display = 'block';
+    document.getElementById('posts-list').style.display = 'none';
+    document.getElementById('blog-form').reset();
+    document.getElementById('post-id').value = '';
+    document.getElementById('image-preview').innerHTML = '';
+    document.getElementById('delete-current-post').style.display = 'none';
+}
+
+function showAllPosts() {
+    if (!isAdmin) return alert('Admin only');
+    document.getElementById('admin-form').style.display = 'none';
+    document.getElementById('posts-list').style.display = 'block';
+    const postsListContainer = document.getElementById('posts-list');
+    postsListContainer.innerHTML = `
+        <h3 style="color: #1a202c; margin-bottom: 2rem;">Manage Posts</h3>
+        ${blogPosts.map(post => `
+            <div class="admin-post-item">
+                <div class="post-management">
+                    <div class="admin-post-content">
+                        ${post.image ? `<img src="${post.image}" alt="${escapeHtml(post.title)}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px; float: left; margin-right: 1rem;">` : ''}
+                        <h3 style="color: #1a202c; margin-bottom: 0.5rem;">${post.title}</h3>
+                        <div class="blog-meta">${formatDate(post.date)} • ${post.category}</div>
+                        <div class="blog-excerpt" style="margin-top: 0.5rem;">${post.excerpt}</div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn btn-small" onclick="editPost(${post.id})">Edit</button>
+                        <button class="btn btn-danger btn-small" onclick="deletePost(${post.id})">Delete</button>
+                    </div>
+                </div>
+            </div>
+        `).join('')}
+    `;
+}
+
+function editPost(postId) {
+    if (!isAdmin) return alert('Admin only');
+    const post = blogPosts.find(p => p.id === postId);
+    if (!post) return;
+
+    editingPostId = postId;
+    document.getElementById('admin-form').style.display = 'block';
+    document.getElementById('posts-list').style.display = 'none';
+
+    document.getElementById('post-id').value = post.id;
+    document.getElementById('post-title').value = post.title;
+    document.getElementById('post-category').value = post.category;
+    document.getElementById('post-excerpt').value = post.excerpt;
+    document.getElementById('post-content').value = post.content;
+    document.getElementById('delete-current-post').style.display = 'inline-block';
+
+    const imagePreview = document.getElementById('image-preview');
+    if (post.image) {
+        imagePreview.innerHTML = `<img src="${post.image}" alt="Current image" class="preview-image">`;
+    } else {
+        imagePreview.innerHTML = '';
+    }
+}
+
+function deletePost(postId) {
+    if (!isAdmin) return alert('Admin only');
+    if (confirm('Are you sure you want to delete this post?')) {
+        blogPosts = blogPosts.filter(p => p.id !== postId);
+        showAllPosts();
+        if (document.getElementById('home').classList.contains('active')) {
+            loadHomePage();
+        }
+        if (document.getElementById('blog').classList.contains('active')) {
+            loadBlogIndexPage();
+        }
+    }
+}
+
+function deleteCurrentEditingPost() {
+    if (!editingPostId) return;
+    deletePost(editingPostId);
+    cancelEdit();
+}
+
+function cancelEdit() {
+    editingPostId = null;
+    document.getElementById('blog-form').reset();
+    document.getElementById('image-preview').innerHTML = '';
+    document.getElementById('delete-current-post').style.display = 'none';
+    showAllPosts();
+}
+
+function previewImage(input) {
+    const preview = document.getElementById('image-preview');
+    preview.innerHTML = '';
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'preview-image';
+            preview.appendChild(img);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+document.getElementById('blog-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (!isAdmin) {
+        alert('Only admin can publish posts.');
+        return;
+    }
+    
+    const formData = new FormData(e.target);
+    const imageFile = formData.get('image');
+    
+    const postData = {
+        title: formData.get('title'),
+        category: formData.get('category'),
+        excerpt: formData.get('excerpt'),
+        content: formData.get('content'),
+        date: new Date().toISOString().split('T')[0],
+        image: null
+    };
+
+    const save = () => savePost(postData);
+
+    if (imageFile && imageFile.size > 0) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            postData.image = e.target.result;
+            save();
+        };
+        reader.readAsDataURL(imageFile);
+    } else {
+        if (editingPostId) {
+            const existingPost = blogPosts.find(p => p.id === editingPostId);
+            if (existingPost) postData.image = existingPost.image || null;
+        } else {
+            postData.image = "https://via.placeholder.com/1000x600?text=Blog+Image";
+        }
+        save();
+    }
+});
+
+function savePost(postData) {
+    if (!isAdmin) {
+        alert('Only admin can save posts.');
+        return;
+    }
+
+    if (editingPostId) {
+        const postIndex = blogPosts.findIndex(p => p.id === editingPostId);
+        if (postIndex !== -1) {
+            blogPosts[postIndex] = { ...blogPosts[postIndex], ...postData };
+        }
+    } else {
+        const newId = blogPosts.length ? Math.max(...blogPosts.map(p => p.id)) + 1 : 1;
+        const newPost = {
+            id: newId,
+            ...postData
+        };
+        blogPosts.unshift(newPost);
+    }
+
+    alert('Post saved successfully!');
+    showAllPosts();
+    if (document.getElementById('home').classList.contains('active')) {
+        loadHomePage();
+    }
+    if (document.getElementById('blog').classList.contains('active')) {
+        loadBlogIndexPage();
+    }
+}
+
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+}
+
+function escapeHtml(s="") {
+    return s.replace(/[&<>"'`=\/]/g, function (c) {
+        return ({
+            '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#x2F;','`':'&#x60;','=':'&#x3D;'
+        })[c];
+    });
+}
+
+function downloadResume() {
+    const resumeContent = `
+MD. MUSTAK TAHSIN ABIR
+Creative Professional & Developer
+
+CONTACT
+Email: tabir8431@gmail.com
+Phone: 01345808742
+Address: Will be updated later
+
+EXPERIENCE
+Creative Professional (2020-Present)
+• Specialized in digital design and development
+• Created innovative solutions bridging creativity and technology
+• Delivered exceptional results for various clients
+
+SKILLS
+• Digital Design
+• Web Development
+• Creative Problem Solving
+• User Experience Design
+• Project Management
+
+EDUCATION
+Bachelor's Degree in Computer Science
+Graduated with honors
+
+PROJECTS
+• Brand Identity Design Projects
+• E-commerce Website Development
+• Mobile App Interface Design
+• Digital Marketing Campaigns
+    `;
+
+    const blob = new Blob([resumeContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'MD_Mustak_Tahsin_Abir_Resume.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+}
+
+function loadHomePage() {
+    const featuredWorksContainer = document.getElementById('featured-works');
+    featuredWorksContainer.innerHTML = works.slice(0, 3).map(work => {
+        return `
+        <div class="card" onclick="showWorkDetail(${work.id})">
+            <div class="card-image">
+                ${work.images[0]}
+            </div>
+            <div class="card-content">
+                <h3>${work.title}</h3>
+                <p>${work.description}</p>
+                <div class="card-meta">
+                    <span>${work.category}</span>
+                    <span>${work.year}</span>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    const recentPostsContainer = document.getElementById('recent-posts');
+    recentPostsContainer.innerHTML = blogPosts.slice(0, 2).map(post => `
+        <div class="blog-post" onclick="showBlogPost(${post.id})">
+            ${post.image ? `<img src="${post.image}" alt="${escapeHtml(post.title)}" class="blog-image">` : ``}
+            <h3>${post.title}</h3>
+            <div class="blog-meta">${formatDate(post.date)} • ${post.category}</div>
+            <div class="blog-excerpt">${post.excerpt}</div>
+        </div>
+    `).join('');
+}
+
+function loadWorksPage() {
+    const allWorksContainer = document.getElementById('all-works');
+    allWorksContainer.innerHTML = works.map(work => `
+        <div class="card" onclick="showWorkDetail(${work.id})">
+            <div class="card-image">
+                ${work.images[0]}
+            </div>
+            <div class="card-content">
+                <h3>${work.title}</h3>
+                <p>${work.description}</p>
+                <div class="card-meta">
+                    <span>${work.category}</span>
+                    <span>${work.year}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function showWorkDetail(workId) {
+    const work = works.find(w => w.id === workId);
+    if (!work) return;
+
+    currentWorkId = workId;
+    const workDetailContainer = document.getElementById('work-detail-content');
+
+    workDetailContainer.innerHTML = `
+        <div class="work-header">
+            <h1>${work.title}</h1>
+            <div class="work-tags">
+                ${work.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+            <div class="card-meta">
+                <span>${work.category}</span>
+                <span>${work.year}</span>
+            </div>
+        </div>
+        <div class="work-images">
+            ${work.images.map((image, idx) => `
+                <div class="work-image">
+                    ${image}
+                </div>`).join('')}
+        </div>
+        <div style="color: #4a5568; line-height: 1.8; font-size: 1.1rem;">
+            ${work.fullDescription}
+        </div>
+        <div style="margin-top: 2rem;">
+            <button class="btn btn-secondary" onclick="showPage('works')">← Back to Works</button>
+        </div>
+    `;
+
+    showPage('work-detail');
+}
+
+function loadBlogIndexPage() {
+    const blogPostsContainer = document.getElementById('blog-posts');
+    blogPostsContainer.innerHTML = blogPosts.map(post => `
+        <div class="blog-post" onclick="showBlogPost(${post.id})">
+            ${post.image ? `<img src="${post.image}" alt="${escapeHtml(post.title)}" class="blog-image">` : ``}
+            <h3>${post.title}</h3>
+            <div class="blog-meta">${formatDate(post.date)} • ${post.category}</div>
+            <div class="blog-excerpt">${post.excerpt}</div>
+        </div>
+    `).join('');
+}
+
+function showBlogPost(postId) {
+    const post = blogPosts.find(p => p.id === postId);
+    if (!post) return;
+
+    currentPostId = postId;
+    const blogPostContainer = document.getElementById('blog-post-content');
+
+    blogPostContainer.innerHTML = `
+        ${post.image ? `<img src="${post.image}" alt="${escapeHtml(post.title)}" class="blog-image" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 2rem;">` : ''}
+        <h1 style="color: #1a202c; margin-bottom: 1rem; font-size: 2.5rem;">${post.title}</h1>
+        <div class="blog-meta" style="margin-bottom: 2rem; font-size: 1rem;">${formatDate(post.date)} • ${post.category}</div>
+        <div style="color: #4a5568; line-height: 1.8; font-size: 1.1rem; white-space: pre-line;">
+            ${post.content}
+        </div>
+        <div style="margin-top: 3rem;">
+            <button class="btn btn-secondary" onclick="showPage('blog')">← Back to Blog</button>
+        </div>
+    `;
+
+    showPage('blog-post');
+}
+
+function loadAdminPage() {
+    if (!isAdmin) {
+        showPage('admin-login');
+        return;
+    }
+    showAllPosts();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadHomePage();
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    const animatedElements = document.querySelectorAll('.section, .card, .blog-post');
+    animatedElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(element);
+    });
+});
+</script>
+</body>
+</html>
